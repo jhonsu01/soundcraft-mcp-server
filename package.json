@@ -1,0 +1,75 @@
+{
+  "name": "soundcraft-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for SoundCraft: multitrack sessions from audio files and synth or drum notes, effects, busses, mixdowns with loudness, stems, MIDI, audio processing and conversion, with SoundCraft's own engine, from Claude (Windows, macOS, Linux).",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "soundcraft-mcp-server": "dist/index.js"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "tsc && node scripts/bundle.mjs",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:e2e": "node scripts/e2e.mjs",
+    "pack:mcpb": "npm run build && npx -y @anthropic-ai/mcpb pack . soundcraft-mcp-server.mcpb",
+    "pack:codex": "npm run build && node scripts/pack-codex.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "soundcraft",
+    "daw",
+    "audio",
+    "music",
+    "mixing",
+    "multitrack",
+    "midi",
+    "synth",
+    "drums",
+    "effects",
+    "loudness",
+    "wav",
+    "flac",
+    "windows",
+    "macos",
+    "linux"
+  ],
+  "author": "Jhon Supelano (https://github.com/jhonsu01)",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jhonsu01/soundcraft-mcp-server.git"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "os": [
+    "win32",
+    "darwin",
+    "linux"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.3"
+  },
+  "codex": {
+    "shortDescription": "Make songs, mix multitrack audio and process sound with your local SoundCraft",
+    "category": "Productivity",
+    "brandColor": "#1BA6C9",
+    "defaultPrompt": [
+      "Make an 8-bar drum and bass loop at 110 BPM and export WAV and stems",
+      "Mix these voice and music files into a podcast intro with fades",
+      "Normalize these recordings and convert them to 16-bit FLAC"
+    ]
+  }
+}

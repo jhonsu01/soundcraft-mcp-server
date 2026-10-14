@@ -1,0 +1,56 @@
+# Sources (dist/bundle.cjs is self-contained)
+/src/
+/test/
+/scripts/
+
+# Runtime does not need node_modules
+node_modules/
+
+# Personal data / dev tooling / docs
+pruebas/
+*.scraft
+*.wav
+*.aif
+*.aiff
+*.flac
+*.mp3
+*.ogg
+*.m4a
+*.mid
+*.midi
+Audio Files/
+*.idml
+*.indd
+*.pdf
+*.epub
+*.html
+*.csv
+*.tsv
+*.xlsx
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+*.webp
+*.gif
+*.svg
+*.psd
+*_package/
+.github/
+.tmp/
+.codegraph/
+docs/
+tsconfig.json
+vitest.config.ts
+README*.md
+CHANGELOG.md
+*.mcpb
+.git/
+.gitignore
+.mcpbignore
+dist/**/*.map
+dist/**/*.js
+dist/**/*.d.ts
+package-lock.json
+*.zip
+.tmp-*

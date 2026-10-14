@@ -1,0 +1,125 @@
+{
+  "manifest_version": "0.3",
+  "name": "soundcraft-mcp-server",
+  "version": "1.0.0",
+  "display_name": "SoundCraft Bridge",
+  "description": "Make music and audio with the SoundCraft DAW installed on Windows, macOS or Linux: multitrack sessions from audio files and synth or drum notes, effects, busses, mixdowns with loudness, stems, MIDI, audio processing and conversion. Not affiliated with SoundCraft or Storytold.",
+  "long_description": "Make music and audio with the SoundCraft you already have installed on Windows, macOS or Linux (tested with 0.6.1 on Windows 11), the open-source, Pro Tools-class digital audio workstation.\n\n- **Create** multitrack sessions: audio tracks from files placed at any time (clip gain, fades), instrument tracks played by the built-in subtractive synth, General MIDI drum synth or a sampler from notes in beats, MIDI files, tempo, meter, key and markers.\n- **Mix** with volume, pan, mute, solo, insert effects (EQ, compressor, gate, de-esser, maximizer, reverbs, delay, chorus, flanger, phaser, saturation, lo-fi) and sends to aux busses; every result shows a waveform picture and the peak and integrated loudness (LUFS).\n- **Export** the mixdown to WAV, AIFF or FLAC, the stems, the MIDI and the editable .scraft session; edit existing sessions.\n- **Process** audio files: trim, normalize, gain, reverse, pitch shift, time stretch, varispeed, effects and fades, one file or whole folders; convert between WAV, AIFF, FLAC, MP3, OGG, M4A, ALAC and CAF in.\n- **Advanced**: run any of SoundCraft's 469 engine commands and open sessions in the SoundCraft app.\n\nThe connector drives SoundCraft's own headless engine (soundcraft-cli). Everything runs locally with no network access; originals are only read and files are never overwritten unless you ask. SoundCraft is an open-source project by Storytold; this connector is not affiliated with or endorsed by them.",
+  "author": {
+    "name": "Jhon Supelano",
+    "url": "https://github.com/jhonsu01"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jhonsu01/soundcraft-mcp-server.git"
+  },
+  "homepage": "https://github.com/jhonsu01/soundcraft-mcp-server",
+  "support": "https://github.com/jhonsu01/soundcraft-mcp-server/issues",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "dist/bundle.cjs",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/dist/bundle.cjs"
+      ],
+      "env": {
+        "SOUNDCRAFT_DIR": "${user_config.soundcraft_dir}",
+        "SOUNDCRAFT_CLI": "${user_config.soundcraft_cli}",
+        "SOUNDCRAFT_CONTROL_PORT": "${user_config.control_port}"
+      }
+    }
+  },
+  "user_config": {
+    "soundcraft_dir": {
+      "type": "directory",
+      "title": "SoundCraft folder",
+      "description": "Install folder of SoundCraft (or SoundCraft.app on macOS). Leave empty to auto-detect: C:\\Program Files\\SoundCraft, /Applications/SoundCraft.app, /usr/bin, /opt/soundcraft or PATH.",
+      "required": false
+    },
+    "soundcraft_cli": {
+      "type": "file",
+      "title": "soundcraft-cli executable (optional)",
+      "description": "Only if it is somewhere else, e.g. where you unzipped the soundcraft-cli zip on macOS.",
+      "required": false
+    },
+    "control_port": {
+      "type": "string",
+      "title": "SoundCraft control port (optional)",
+      "description": "Port used to drive the SoundCraft app (open_in_soundcraft, run_soundcraft_commands live). Default 7801.",
+      "required": false
+    }
+  },
+  "compatibility": {
+    "platforms": [
+      "win32",
+      "darwin",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=20.0.0"
+    }
+  },
+  "tools": [
+    {
+      "name": "create_session",
+      "description": "Build a multitrack song or mix: audio clips, synth and drum notes, effects, busses, markers"
+    },
+    {
+      "name": "edit_session",
+      "description": "Change a .scraft session: tracks, mixer, effects, tempo, markers"
+    },
+    {
+      "name": "export_session",
+      "description": "Mix down sessions to WAV, AIFF, FLAC, stems or MIDI with loudness"
+    },
+    {
+      "name": "process_audio",
+      "description": "Trim, normalize, pitch shift, time stretch and add effects to audio files"
+    },
+    {
+      "name": "convert_audio",
+      "description": "Convert audio to WAV, AIFF or FLAC, sample rate and bit depth"
+    },
+    {
+      "name": "get_audio_info",
+      "description": "Format, length, loudness (LUFS) and waveform of audio files and sessions"
+    },
+    {
+      "name": "list_soundcraft_catalog",
+      "description": "Engine commands, plugins with parameters, drum notes and formats"
+    },
+    {
+      "name": "run_soundcraft_commands",
+      "description": "Run any SoundCraft engine command, headless or in the live app"
+    },
+    {
+      "name": "open_in_soundcraft",
+      "description": "Open a session in the SoundCraft app"
+    },
+    {
+      "name": "get_soundcraft_status",
+      "description": "Check the SoundCraft installation, version and commands"
+    }
+  ],
+  "keywords": [
+    "soundcraft",
+    "daw",
+    "audio",
+    "music",
+    "mixing",
+    "multitrack",
+    "midi",
+    "synth",
+    "drums",
+    "effects",
+    "loudness",
+    "wav",
+    "flac",
+    "windows",
+    "macos",
+    "linux"
+  ],
+  "license": "Apache-2.0"
+}
